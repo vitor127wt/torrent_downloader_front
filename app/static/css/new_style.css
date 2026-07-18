@@ -1535,3 +1535,140 @@ BOTÃO MAGNET MAIS LIMPO
     background: rgba(190, 65, 82, 0.17) !important;
     border-color: rgba(190, 65, 82, 0.32) !important;
 }
+
+/* Correção dos chips aninhados */
+.torrent-metadata {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Somente os filhos diretos viram chips */
+.torrent-metadata > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 38px;
+    padding: 0 13px;
+
+    font-size: 0.9rem;
+    line-height: 1;
+    white-space: nowrap;
+
+    background: #1a2f4e;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+}
+
+/* O texto dentro do chip não pode receber outro fundo */
+.torrent-metadata > span > span {
+    display: inline !important;
+
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: inherit !important;
+    line-height: 1 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Ícones centralizados */
+.last-checked-chip > svg,
+.torrent-health-chip > svg {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+}
+
+/* Última verificação */
+.torrent-metadata > .last-checked-chip {
+    color: #b8c9df !important;
+    background: rgba(122, 153, 199, 0.08) !important;
+    border-color: rgba(122, 153, 199, 0.17) !important;
+}
+
+/* Status */
+.torrent-metadata > .torrent-health-chip {
+    font-weight: 700;
+}
+
+.torrent-metadata > .torrent-health-chip.is-excellent,
+.torrent-metadata > .torrent-health-chip.is-healthy {
+    color: #caffef !important;
+    background: rgba(0, 143, 122, 0.16) !important;
+    border-color: rgba(0, 143, 122, 0.3) !important;
+}
+
+.torrent-metadata > .torrent-health-chip.is-available {
+    color: #ffefb7 !important;
+    background: rgba(210, 158, 43, 0.14) !important;
+    border-color: rgba(210, 158, 43, 0.28) !important;
+}
+
+.torrent-metadata > .torrent-health-chip.is-no-seeds {
+    color: #ffd3a8 !important;
+    background: rgba(195, 112, 43, 0.15) !important;
+    border-color: rgba(195, 112, 43, 0.29) !important;
+}
+
+.torrent-metadata > .torrent-health-chip.is-dead {
+    color: #ffd4da !important;
+    background: rgba(190, 65, 82, 0.15) !important;
+    border-color: rgba(190, 65, 82, 0.3) !important;
+}
+
+.torrent-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+.torrent-magnet-link,
+.torrent-magnet-unavailable,
+.torrent-actions .files-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0 15px;
+
+    font-weight: 700;
+    line-height: 1;
+
+    border-radius: 999px;
+    box-sizing: border-box;
+}
+
+.torrent-magnet-link {
+    color: #dff8ff;
+
+    background: rgba(0, 137, 186, 0.16);
+    border: 1px solid rgba(0, 137, 186, 0.3);
+}
+
+.torrent-magnet-link:hover {
+    background: rgba(0, 137, 186, 0.24);
+}
+
+.torrent-magnet-unavailable {
+    color: var(--muted);
+
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--border);
+}

@@ -250,7 +250,22 @@ def TorrentRow(
     files_target_id = f"torrent-files-{item_id}-{torrent.index}"
     loading_id = f"torrent-files-loading-{item_id}-{torrent.index}"
 
+    torrent_magnet = (
+        ft.A(
+            DownloadIcon(cls="button-icon"),
+            ft.Span("Magnet"),
+            href=torrent.magnet,
+            cls="torrent-magnet-link",
+        )
+        if torrent.magnet
+        else ft.Span(
+            "Magnet indisponível",
+            cls="torrent-magnet-unavailable",
+        )
+    )
+
     return ft.Div(
+        ft.Strong(torrent.title),
         ft.Div(
             ft.Span(f"Tamanho: {format_torrent_size(torrent.size)}"),
             ft.Span(f"Seeds: {torrent.seeds}"),
@@ -261,11 +276,12 @@ def TorrentRow(
             cls="torrent-metadata",
         ),
         ft.Div(
+            torrent_magnet,
             ft.Button(
                 FolderIcon(cls="button-icon"),
                 ft.Span("Arquivos"),
                 type="button",
-                hx_get=f"/torrent-files/{item_id}/{torrent.index}",
+                hx_get=(f"/torrent-files/{item_id}/{torrent.index}"),
                 hx_target=f"#{files_target_id}",
                 hx_swap="innerHTML",
                 hx_indicator=f"#{loading_id}",
