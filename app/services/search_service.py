@@ -1,3 +1,5 @@
+from datetime import UTC, datetime
+from math import isfinite
 from typing import TYPE_CHECKING
 
 from models.search_filters import SearchFilters  # noqa
@@ -6,6 +8,33 @@ from models.search_item import SearchItem, SearchPage, TorrentOption
 if TYPE_CHECKING:
     from models.mongo_docs import RawTorrentPage
     from repositories.torrent_repository import TorrentRepository
+
+
+def normalize_timestamp(value: object) -> float | None:
+    if isinstance(value, bool):
+        return None
+
+    try:
+        timestamp = float(value)
+    except TypeError, ValueError:
+        return None
+
+    if not isfinite(timestamp) or timestamp <= 0:
+        return None
+
+    # Aceita tanto segundos quanto milissegundos Unix.
+    if timestamp > 10_000_000_000:
+        timestamp /= 1000
+
+    try:
+        datetime.fromtimestamp(
+            timestamp,
+            tz=UTC,
+        )
+    except OverflowError, OSError, ValueError:
+        return None
+
+    return timestamp
 
 
 class SearchService:
@@ -58,6 +87,9 @@ class SearchService:
                         peers=int(torrent.get("peers", 0) or 0),
                         leechers=int(torrent.get("leechers", 0) or 0),
                         dead=bool(torrent.get("dead", False)),
+                        last_checked=normalize_timestamp(
+                            torrent.get("last_checked")
+                        ),
                     )
                     for torrent_index, torrent in enumerate(
                         document.get("torrents", [])

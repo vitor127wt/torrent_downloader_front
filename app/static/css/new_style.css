@@ -1293,3 +1293,245 @@ BOTÃO MAGNET MAIS LIMPO
         border-radius: 18px;
     }
 }
+/* =========================
+   CABEÇALHO DO RESULTADO
+========================= */
+
+.search-result > summary {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 20px 22px;
+}
+
+.search-result > summary::before {
+    flex: 0 0 auto;
+
+    width: 16px;
+    margin: 4px 0 0;
+}
+
+.result-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.result-summary-title {
+    min-width: 0;
+
+    color: var(--text);
+    font-size: 1.13rem;
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+}
+
+.result-summary-badges {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    flex: 0 0 auto;
+}
+
+.result-summary-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 32px;
+    padding: 0 11px;
+
+    color: #aebed4;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+}
+
+.result-summary-badge.is-seeds {
+    color: #c9fff0;
+
+    background: rgba(0, 143, 122, 0.13);
+    border-color: rgba(0, 143, 122, 0.22);
+}
+
+.result-summary-badge.is-size {
+    color: #d6eaff;
+
+    background: rgba(44, 115, 210, 0.13);
+    border-color: rgba(44, 115, 210, 0.22);
+}
+
+/* =========================
+   BARRA DE AÇÕES
+========================= */
+
+.result-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+
+    padding: 16px 18px;
+    margin-bottom: 14px;
+
+    background: #10223e;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.result-action-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.result-action-copy strong {
+    color: var(--text);
+    font-size: 0.96rem;
+}
+
+.result-action-copy small {
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+.result-card-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.result-action-bar .magnet-link,
+.result-action-bar .source-link {
+    min-height: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0 15px;
+}
+
+.result-links-unavailable {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Remove o espaçamento deixado pelo cabeçalho antigo */
+.result-content {
+    padding-top: 0;
+}
+
+@media (max-width: 760px) {
+    .result-summary {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .result-summary-badges {
+        justify-content: flex-start;
+    }
+
+    .result-action-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .result-card-actions {
+        width: 100%;
+    }
+
+    .result-action-bar .magnet-link,
+    .result-action-bar .source-link {
+        flex: 1;
+    }
+}
+
+/* =========================
+   ÚLTIMA VERIFICAÇÃO
+========================= */
+
+.last-checked-chip,
+.torrent-health-chip {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+
+    min-height: 40px;
+    padding: 0 13px;
+
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: 999px;
+}
+
+.last-checked-chip > span,
+.torrent-health-chip > span {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.last-checked-chip {
+    color: #c3d2e7 !important;
+
+    background: rgba(122, 153, 199, 0.09) !important;
+    border-color: rgba(122, 153, 199, 0.16) !important;
+}
+
+/* =========================
+   SAÚDE DO TORRENT
+========================= */
+
+.torrent-health-chip {
+    font-weight: 700;
+}
+
+.torrent-health-chip.is-excellent {
+    color: #c9fff1 !important;
+
+    background: rgba(0, 143, 122, 0.18) !important;
+    border-color: rgba(0, 143, 122, 0.34) !important;
+}
+
+.torrent-health-chip.is-healthy {
+    color: #d8ffe8 !important;
+
+    background: rgba(47, 158, 103, 0.16) !important;
+    border-color: rgba(47, 158, 103, 0.3) !important;
+}
+
+.torrent-health-chip.is-available {
+    color: #fff0bd !important;
+
+    background: rgba(210, 158, 43, 0.15) !important;
+    border-color: rgba(210, 158, 43, 0.3) !important;
+}
+
+.torrent-health-chip.is-no-seeds {
+    color: #ffd6aa !important;
+
+    background: rgba(195, 112, 43, 0.16) !important;
+    border-color: rgba(195, 112, 43, 0.3) !important;
+}
+
+.torrent-health-chip.is-dead {
+    color: #ffd7dc !important;
+
+    background: rgba(190, 65, 82, 0.17) !important;
+    border-color: rgba(190, 65, 82, 0.32) !important;
+}

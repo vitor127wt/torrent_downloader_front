@@ -11,6 +11,7 @@ class TorrentOption:
     peers: int
     leechers: int
     dead: bool
+    last_checked: float | None
 
 
 @dataclass(frozen=True, slots=True)

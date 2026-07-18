@@ -118,3 +118,18 @@ def VideoFileIcon(cls: str = "icon") -> ft.FT:
         svg.Path(d="m10 11 5 3-5 3z"),
         cls=cls,
     )
+
+
+def ClockIcon(cls: str = "icon") -> ft.FT:
+    return _Icon(
+        svg.Circle(cx=12, cy=12, r="9"),
+        svg.Path(d="M12 7v5l3 2"),
+        cls=cls,
+    )
+
+
+def ActivityIcon(cls: str = "icon") -> ft.FT:
+    return _Icon(
+        svg.Path(d="M3 12h4l2-5 4 10 2-5h6"),
+        cls=cls,
+    )
