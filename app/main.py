@@ -1,3 +1,5 @@
+import os
+
 import fasthtml.common as ft
 from config import load_settings
 from database.mongo import MongoDataBase
@@ -17,21 +19,37 @@ torrent_repository = TorrentRepository(mongo_database.torrent_pages)
 search_service = SearchService(torrent_repository)
 
 SEARCH_PAGE_SIZE = 10
-app, _ = ft.fast_app(
+app, rt = ft.fast_app(
     pico=False,
     hdrs=(
         ft.Link(
             rel="stylesheet",
-            href="/static/css/new_style.css",
+            href="/static/css/style.css",
         ),
     ),
     on_shutdown=[
         mongo_database.close,
     ],
 )
+app, rt = ft.fast_app(
+    pico=False,
+    hdrs=(
+        ft.Link(
+            rel="stylesheet",
+            href="/static/css/style.css",
+        ),
+    ),
+    on_shutdown=(mongo_database.close,),
+)
+
+
+@rt("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
 
 search_router = create_search_router(search_service=search_service)
 
 search_router.to_app(app)
 
-ft.serve()
+ft.serve(host="0.0.0.0", port=int(os.getenv("PORT", "5001")), reload=True)

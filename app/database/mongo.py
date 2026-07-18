@@ -13,7 +13,7 @@ class MongoDataBase:
     def __init__(self, settings: Settings) -> None:
         self._client: MongoClient[RawTorrentPage] = MongoClient(
             settings.mongo_uri,
-            serverselectiontimeoutms=60,
+            serverselectiontimeoutms=30000,
         )
 
         self._database: Database[RawTorrentPage] = self._client[
