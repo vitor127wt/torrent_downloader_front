@@ -1,0 +1,128 @@
+# ============================
+# Projeto
+# Referência: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+# 
+
+# Instale o pacote: python-dotenv
+# Mostrei como no README.md
+# 
+
+# Os pontos de atenção estão comentados próximo das chaves, aqui só coloquei um
+# lembrete
+# 
+
+# Atenção: As versões do Python devem ser consistentes entre:
+#                 - project.requires-python
+#                    - tool.ruff.target-version
+#                   - tool.pyright.pythonVersion
+# 
+
+# Atenção: O nome do pacote principal deve ser consistente entre:
+#                - project.scripts
+#                - tool.ruff.lint.isort.known-first-party
+#                - A pasta dentro de 'src/'
+# 
+
+# Thanks = 'https://www.otaviomiranda.com.br/'
+# Thanks to Otávio Miranda for providing this template file
+# ============================
+
+[project]
+name = "torrent_downloader_front"
+version = "0.0.1"
+description = "torrent_downloader_front"
+readme = "README.md"
+requires-python = "==3.14.6"
+dependencies = [
+    "dotenv>=0.9.9",
+    "loguru>=0.7.3",
+    "pydantic>=2.13.4",
+    "pymongo>=4.17.0",
+    "python-dotenv>=1.2.2",
+    "python-fasthtml>=0.14.6",
+    "uvicorn>=0.51.0",
+]
+authors = [{name = "Vitor William R. Teixeira",email = "vitor127wt@gmail.com"}]
+
+[project.urls]
+Repository = "https://github.com/vitor127wt/torrent_downloader_front"
+
+[project.scripts]
+# Define os comandos de console. A chave ('torrent_downloader_front')
+# é o comando.
+# O valor aponta para 'nome_do_pacote.nome_do_modulo:nome_da_funcao'.
+# Ex: 'my_package.main:run'
+# -> src/my_package/main.py (e a função run lá dentro).
+# Lembre de sincronizar o nome do pacote com 'known-first-party' do Ruff
+# torrent_downloader_front = "core.my_module:function
+torrent_downloader_front = "core.my_module:function"
+app = ".main:main"
+
+[project.optional-dependencies]
+dev = ["ruff", "pytest", "pytest-xdist"]
+
+[tool.ruff]
+# ============================
+# Lint e formatação (Ruff)
+# ============================
+line-length = 80
+target-version = "py314"
+fix = true
+show-fixes = true
+indent-width = 4
+exclude = ["venv", ".venv", "env", ".env", "node_modules", "__pycache__"]
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+select = ["ASYNC", "A", "ANN", "B", "BLE", "C4", "C90", "COM", "E", "EM", "ERA", "EXE", "F", "FBT", "FIX", "I", "ICN", "ISC", "Q", "RET", "RSE", "S", "SIM", "SLF", "T10", "T20", "TC", "TD", "TRY", "UP", "W", "YTT", "RUF", "N"]
+ignore = ["T201", "COM812", "COM819", "EXE002", "N802"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["ANN201", "S101"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "core"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "cr-lf"
+
+[tool.pyright]
+# ============================
+# Tipagem (Pyright)
+# ============================
+typeCheckingMode = "standard"
+pythonVersion = "3.14.6"
+include = ["src", "tests"]
+exclude = ["**/venv", "**/.venv", "**/env", "**/.env", "**/node_modules", "**/__pycache__", "**/.*"]
+venv = ".venv"
+venvPath = "."
+
+[[tool.pyright.executionEnvironments]]
+root = "src"
+
+[tool.pytest.ini_options]
+addopts = "-s --color=yes --tb=short"
+pythonpath = ["src"]
+testpath = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app", "app/core"]
+
+[build-system]
+# ============================
+# Build
+# ============================
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.15.22",
+]
