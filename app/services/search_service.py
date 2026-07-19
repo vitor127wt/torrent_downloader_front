@@ -2,12 +2,12 @@ from datetime import UTC, datetime
 from math import isfinite
 from typing import TYPE_CHECKING
 
-from models.search_filters import SearchFilters  # noqa
-from models.search_item import SearchItem, SearchPage, TorrentOption
+from app.models.search_filters import SearchFilters  # noqa
+from app.models.search_item import SearchItem, SearchPage, TorrentOption
 
 if TYPE_CHECKING:
-    from models.mongo_docs import RawTorrentPage
-    from repositories.torrent_repository import TorrentRepository
+    from app.models.mongo_docs import RawTorrentPage
+    from app.repositories.torrent_repository import TorrentRepository
 
 
 def normalize_timestamp(value: object) -> float | None:

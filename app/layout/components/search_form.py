@@ -1,6 +1,7 @@
 import fasthtml.common as ft
-from layout.components.icons import SearchIcon
-from models.search_filters import SearchFilters  # noqa
+
+from app.layout.components.icons import SearchIcon
+from app.models.search_filters import SearchFilters  # noqa
 
 
 def SearchForm(search_url: str, filters: SearchFilters) -> ft.FT:

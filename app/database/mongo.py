@@ -4,9 +4,10 @@ from pymongo import MongoClient
 
 if TYPE_CHECKING:
     from config import Settings
-    from models.mongo_docs import RawTorrentPage
     from pymongo.collection import Collection
     from pymongo.database import Database
+
+    from app.models.mongo_docs import RawTorrentPage
 
 
 class MongoDataBase:

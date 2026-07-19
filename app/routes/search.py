@@ -2,15 +2,16 @@ from typing import TYPE_CHECKING, Any
 from urllib.parse import urlencode
 
 import fasthtml.common as ft
-from layout.components.file_tree import FileTree
-from layout.components.icons import SearchIcon
-from layout.components.seach_result import (
+
+from app.layout.components.file_tree import FileTree
+from app.layout.components.icons import SearchIcon
+from app.layout.components.seach_result import (
     SearchResults,
     SearchResultsBatch,
 )
-from layout.components.search_form import SearchForm
-from layout.layout import BasePage, Page
-from models.search_filters import SearchFilters
+from app.layout.components.search_form import SearchForm
+from app.layout.layout import BasePage, Page
+from app.models.search_filters import SearchFilters
 
 if TYPE_CHECKING:
     from services.search_service import SearchService

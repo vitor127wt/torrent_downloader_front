@@ -4,3 +4,6 @@
 __pycache__/
 .sesskey
 *.pyc
+.dockerignore
+Dockerfile
+compose.yaml

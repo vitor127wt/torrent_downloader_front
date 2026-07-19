@@ -2,11 +2,13 @@ from typing import TYPE_CHECKING
 
 from bson import ObjectId
 from bson.errors import InvalidId
-from models.search_filters import SearchFilters  # noqa
+
+from app.models.search_filters import SearchFilters  # noqa
 
 if TYPE_CHECKING:
-    from models.mongo_docs import RawTorrentPage
     from pymongo.collection import Collection
+
+    from app.models.mongo_docs import RawTorrentPage
 
 
 _REGEX_SPECIAL_CHARACTERS = frozenset(r"\.^$|?*+()[]{}")

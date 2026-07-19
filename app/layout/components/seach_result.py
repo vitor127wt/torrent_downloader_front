@@ -2,13 +2,13 @@ from collections.abc import Sequence  # noqa
 
 import fasthtml.common as ft
 from datetime import datetime, UTC
-from models.search_item import (  # noqa
+from app.models.search_item import (  # noqa
     SearchItem,
     SearchPage,
     TorrentOption,
 )
 
-from layout.components.icons import (
+from app.layout.components.icons import (
     DownloadIcon,
     ExternalLinkIcon,
     FolderIcon,

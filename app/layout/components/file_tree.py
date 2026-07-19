@@ -1,5 +1,6 @@
 import fasthtml.common as ft
-from layout.components.icons import (
+
+from app.layout.components.icons import (
     ChevronRightIcon,
     FileIcon,
     FolderIcon,

@@ -21,6 +21,7 @@ class Settings:
     mongo_uri: str
     mongo_database: str
     mongo_collection: str
+    session_secret: str
 
 
 def load_settings() -> Settings:
@@ -31,4 +32,5 @@ def load_settings() -> Settings:
         ),
         mongo_database=required_env_var("MONGO_DATABASE"),
         mongo_collection=required_env_var("MONGO_COLLECTION"),
+        session_secret=required_env_var("SESSION_SECRET"),
     )
